@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATS Resume Checker</title>
+</head>
+<body>
+    <h1>AI Resume ATS Score Checker</h1>
+
+    <form action="/analyze" method="post" enctype="multipart/form-data">
+        <label>Upload Resume (PDF):</label><br>
+        <input type="file" name="resume" required><br><br>
+
+        <label>Job Description:</label><br>
+        <textarea name="job_desc" rows="10" cols="50"></textarea><br><br>
+
+        <button type="submit">Check ATS Score</button>
+    </form>
+
+    {% if score %}
+        <h2>ATS Score: {{score}}%</h2>
+
+        <h3>Missing Keywords:</h3>
+        <ul>
+            {% for word in missing %}
+                <li>{{word}}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>AI Suggestions:</h3>
+        <p>{{suggestions}}</p>
+    {% endif %}
+</body>
+</html>
